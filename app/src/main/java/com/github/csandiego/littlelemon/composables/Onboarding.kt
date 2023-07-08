@@ -13,8 +13,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -86,7 +86,7 @@ fun Onboarding() {
                     .fillMaxWidth()
                     .padding(top = 24.dp)
             )
-            OutlinedTextField(
+            TextField(
                 value = firstName.value,
                 onValueChange = { firstName.value = it },
                 modifier = Modifier.fillMaxWidth()
@@ -96,7 +96,7 @@ fun Onboarding() {
                     .fillMaxWidth()
                     .padding(top = 24.dp)
             )
-            OutlinedTextField(
+            TextField(
                 value = lastName.value,
                 onValueChange = { lastName.value = it },
                 modifier = Modifier.fillMaxWidth()
@@ -106,7 +106,7 @@ fun Onboarding() {
                     .fillMaxWidth()
                     .padding(top = 24.dp)
             )
-            OutlinedTextField(
+            TextField(
                 value = email.value,
                 onValueChange = { email.value = it },
                 modifier = Modifier.fillMaxWidth()
