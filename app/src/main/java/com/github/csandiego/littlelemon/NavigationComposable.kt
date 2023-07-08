@@ -15,10 +15,10 @@ fun Navigation(navController: NavHostController, sharedPreferences: SharedPrefer
         ) Onboarding.route else Home.route
     ) {
         composable(Home.route) {
-            Home()
+            Home(navController)
         }
         composable(Profile.route) {
-            Profile()
+            Profile(navController = navController, sharedPreferences = sharedPreferences)
         }
         composable(Onboarding.route) {
             com.github.csandiego.littlelemon.composables.Onboarding(
