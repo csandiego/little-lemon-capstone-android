@@ -1,5 +1,7 @@
 package com.github.csandiego.littlelemon.composables
 
+import android.content.SharedPreferences
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,17 +23,21 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import com.github.csandiego.littlelemon.Home
 import com.github.csandiego.littlelemon.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Onboarding() {
+fun Onboarding(navController: NavHostController? = null, sharedPreferences: SharedPreferences? = null) {
+    val context = LocalContext.current
     val firstName = rememberSaveable {
         mutableStateOf("")
     }
@@ -113,7 +119,28 @@ fun Onboarding() {
             )
         }
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                if (firstName.value.isBlank() || lastName.value.isBlank() || email.value.isBlank()) {
+                    Toast.makeText(
+                        context,
+                        "Registration unsuccessful. Please enter all data.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    sharedPreferences?.edit()?.apply {
+                        putString("firstName", firstName.value)
+                        putString("lastName", lastName.value)
+                        putString("email", email.value)
+                        apply()
+                    }
+                    Toast.makeText(
+                        context,
+                        "Registration successful!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    navController?.navigate(Home.route)
+                }
+            },
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFF4CE14),

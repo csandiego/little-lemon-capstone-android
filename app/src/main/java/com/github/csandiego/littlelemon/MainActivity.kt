@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.github.csandiego.littlelemon.ui.theme.LittleLemonTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +23,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    val navController = rememberNavController()
+                    val sharedPreferences by lazy { getPreferences(MODE_PRIVATE) }
+                    Navigation(navController = navController, sharedPreferences = sharedPreferences)
                 }
             }
         }
