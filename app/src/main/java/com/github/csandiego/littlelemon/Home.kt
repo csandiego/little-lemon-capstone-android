@@ -17,6 +17,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,7 +35,7 @@ import androidx.navigation.NavHostController
 @Composable
 fun Home(navController: NavHostController? = null) {
     val context = LocalContext.current
-    val menuItems = MenuDatabase.getInstance(context).menuItemDao().getAll().observeAsState()
+    val menuItems by MenuDatabase.getInstance(context).menuItemDao().getAll().observeAsState()
     Column(Modifier.fillMaxSize()) {
         Row(
             horizontalArrangement = Arrangement.Center,
@@ -97,7 +98,7 @@ fun Home(navController: NavHostController? = null) {
                     .fillMaxWidth()
             )
         }
-        MenuItems(items = menuItems.value ?: emptyList())
+        MenuItems(items = menuItems ?: emptyList())
     }
 }
 

@@ -18,8 +18,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -36,13 +38,13 @@ import androidx.navigation.NavHostController
 @Composable
 fun Onboarding(navController: NavHostController? = null, sharedPreferences: SharedPreferences? = null) {
     val context = LocalContext.current
-    val firstName = rememberSaveable {
+    var firstName by rememberSaveable {
         mutableStateOf("")
     }
-    val lastName = rememberSaveable {
+    var lastName by rememberSaveable {
         mutableStateOf("")
     }
-    val email = rememberSaveable {
+    var email by rememberSaveable {
         mutableStateOf("")
     }
     Column(Modifier.fillMaxSize()) {
@@ -91,8 +93,8 @@ fun Onboarding(navController: NavHostController? = null, sharedPreferences: Shar
                     .padding(top = 24.dp)
             )
             TextField(
-                value = firstName.value,
-                onValueChange = { firstName.value = it },
+                value = firstName,
+                onValueChange = { firstName = it },
                 modifier = Modifier.fillMaxWidth()
             )
             Text(
@@ -101,8 +103,8 @@ fun Onboarding(navController: NavHostController? = null, sharedPreferences: Shar
                     .padding(top = 24.dp)
             )
             TextField(
-                value = lastName.value,
-                onValueChange = { lastName.value = it },
+                value = lastName,
+                onValueChange = { lastName = it },
                 modifier = Modifier.fillMaxWidth()
             )
             Text(
@@ -111,14 +113,14 @@ fun Onboarding(navController: NavHostController? = null, sharedPreferences: Shar
                     .padding(top = 24.dp)
             )
             TextField(
-                value = email.value,
-                onValueChange = { email.value = it },
+                value = email,
+                onValueChange = { email = it },
                 modifier = Modifier.fillMaxWidth()
             )
         }
         Button(
             onClick = {
-                if (firstName.value.isBlank() || lastName.value.isBlank() || email.value.isBlank()) {
+                if (firstName.isBlank() || lastName.isBlank() || email.isBlank()) {
                     Toast.makeText(
                         context,
                         "Registration unsuccessful. Please enter all data.",
@@ -126,9 +128,9 @@ fun Onboarding(navController: NavHostController? = null, sharedPreferences: Shar
                     ).show()
                 } else {
                     sharedPreferences?.edit()?.apply {
-                        putString("firstName", firstName.value)
-                        putString("lastName", lastName.value)
-                        putString("email", email.value)
+                        putString("firstName", firstName)
+                        putString("lastName", lastName)
+                        putString("email", email)
                         apply()
                     }
                     Toast.makeText(
