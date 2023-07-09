@@ -21,7 +21,7 @@ fun Navigation(navController: NavHostController, sharedPreferences: SharedPrefer
             Profile(navController = navController, sharedPreferences = sharedPreferences)
         }
         composable(Onboarding.route) {
-            com.github.csandiego.littlelemon.composables.Onboarding(
+            Onboarding(
                 navController = navController,
                 sharedPreferences = sharedPreferences
             )

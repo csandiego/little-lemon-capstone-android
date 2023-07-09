@@ -1,4 +1,4 @@
-package com.github.csandiego.littlelemon.composables
+package com.github.csandiego.littlelemon
 
 import android.content.SharedPreferences
 import android.widget.Toast
@@ -31,8 +31,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.github.csandiego.littlelemon.Home
-import com.github.csandiego.littlelemon.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
