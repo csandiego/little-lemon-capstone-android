@@ -29,6 +29,9 @@ interface MenuItemDao {
     @Query("SELECT * FROM MenuItem")
     fun getAll(): LiveData<List<MenuItem>>
 
+    @Query("SELECT DISTINCT category FROM MenuItem ORDER BY category")
+    fun getCategories(): LiveData<List<String>>
+
     @Insert(onConflict = REPLACE)
     suspend fun insert(vararg item: MenuItem)
 }
