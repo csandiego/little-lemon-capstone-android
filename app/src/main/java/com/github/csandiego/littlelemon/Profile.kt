@@ -20,6 +20,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,6 +33,7 @@ fun Profile(
     navController: NavHostController? = null,
     sharedPreferences: SharedPreferences? = null
 ) {
+    val karlaFont = FontFamily(Font(R.font.karla_regular))
     Column(Modifier.fillMaxSize()) {
         Box(modifier = Modifier.fillMaxWidth()) {
             Image(
@@ -48,6 +51,7 @@ fun Profile(
             text = "Personal information",
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
+            fontFamily = karlaFont,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 12.dp, end = 12.dp, top = 72.dp, bottom = 12.dp)
@@ -59,24 +63,30 @@ fun Profile(
                 .weight(1.0f)
         ) {
             Text(
-                text = "First name", modifier = Modifier
+                text = "First name",
+                fontFamily = karlaFont,
+                modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 24.dp)
             )
             Text(
                 text = sharedPreferences?.getString("firstName", null) ?: "John",
+                fontFamily = karlaFont,
                 modifier = Modifier
                     .fillMaxWidth()
                     .border(1.dp, SolidColor(Color.Gray), RoundedCornerShape(4.dp))
                     .padding(8.dp)
             )
             Text(
-                text = "Last name", modifier = Modifier
+                text = "Last name",
+                fontFamily = karlaFont,
+                modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 24.dp)
             )
             Text(
                 text = sharedPreferences?.getString("lastName", null) ?: "Doe",
+                fontFamily = karlaFont,
                 modifier = Modifier
                     .fillMaxWidth()
                     .border(1.dp, SolidColor(Color.Gray), RoundedCornerShape(4.dp))
@@ -84,12 +94,15 @@ fun Profile(
 
             )
             Text(
-                text = "Email", modifier = Modifier
+                text = "Email",
+                fontFamily = karlaFont,
+                modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 24.dp)
             )
             Text(
                 text = sharedPreferences?.getString("email", null) ?: "some@where.com",
+                fontFamily = karlaFont,
                 modifier = Modifier
                     .fillMaxWidth()
                     .border(1.dp, SolidColor(Color.Gray), RoundedCornerShape(4.dp))
@@ -110,7 +123,7 @@ fun Profile(
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp, vertical = 24.dp)
         ) {
-            Text(text = "Log out")
+            Text(text = "Log out", fontFamily = karlaFont, fontWeight = FontWeight.Bold)
         }
     }
 }

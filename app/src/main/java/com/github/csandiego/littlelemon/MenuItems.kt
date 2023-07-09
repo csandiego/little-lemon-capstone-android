@@ -14,6 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,24 +26,32 @@ import com.bumptech.glide.integration.compose.GlideImage
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun MenuItems(items: List<MenuItem>) {
+    val karlaFont = FontFamily(Font(R.font.karla_regular))
     LazyColumn {
         itemsIndexed(items) { index, menuItem ->
             Column(
                 Modifier
                     .fillMaxWidth()
-                    .padding(12.dp)) {
+                    .padding(12.dp)
+            ) {
                 Text(
                     text = menuItem.title,
                     fontSize = 18.sp,
                     fontWeight = Bold,
+                    fontFamily = karlaFont,
                     modifier = Modifier.fillMaxWidth()
                 )
                 Row(Modifier.fillMaxWidth()) {
                     Column(Modifier.weight(1.0f)) {
-                        Text(text = menuItem.description, modifier = Modifier.padding(top = 12.dp))
+                        Text(
+                            text = menuItem.description,
+                            modifier = Modifier.padding(top = 12.dp),
+                            fontFamily = karlaFont
+                        )
                         Text(
                             text = "$${String.format("%.2f", menuItem.price)}",
                             fontSize = 18.sp,
+                            fontFamily = karlaFont,
                             modifier = Modifier.padding(top = 12.dp)
                         )
                     }

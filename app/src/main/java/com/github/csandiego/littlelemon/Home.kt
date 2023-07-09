@@ -37,6 +37,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -56,6 +58,8 @@ fun Home(navController: NavHostController? = null) {
     val dao = MenuDatabase.getInstance(context).menuItemDao()
     val menuItems by dao.getAll().observeAsState()
     val categories by dao.getCategories().observeAsState()
+    val karlaFont = FontFamily(Font(R.font.karla_regular))
+    val markaziFont = FontFamily(Font(R.font.markazitext_regular))
     Column(Modifier.fillMaxSize()) {
         Box(modifier = Modifier.fillMaxWidth()) {
             Image(
@@ -87,17 +91,24 @@ fun Home(navController: NavHostController? = null) {
                 .background(Color(0xFF495E57))
                 .padding(12.dp)
         ) {
-            Text(text = "Little Lemon", color = Color(0xFFF4CE14), fontSize = 48.sp)
+            Text(
+                text = "Little Lemon",
+                color = Color(0xFFF4CE14),
+                fontSize = 56.sp,
+                fontFamily = markaziFont
+            )
             Row(Modifier.fillMaxWidth()) {
                 Column(Modifier.weight(1.0f)) {
                     Text(
                         text = "Chicago",
                         color = Color.White,
-                        fontSize = 24.sp,
+                        fontSize = 32.sp,
+                        fontFamily = markaziFont
                     )
                     Text(
                         text = "We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.",
-                        color = Color.White
+                        color = Color.White,
+                        fontFamily = karlaFont
                     )
                 }
                 Image(
@@ -124,6 +135,7 @@ fun Home(navController: NavHostController? = null) {
             text = "ORDER FOR DELIVERY!",
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
+            fontFamily = karlaFont,
             modifier = Modifier.padding(start = 12.dp, end = 12.dp, top = 12.dp)
         )
         LazyRow() {
@@ -136,7 +148,7 @@ fun Home(navController: NavHostController? = null) {
                     ),
                     modifier = Modifier.padding(12.dp)
                 ) {
-                    Text(text = it.replaceFirstChar { it.uppercase() })
+                    Text(text = it.replaceFirstChar { it.uppercase() }, fontFamily = karlaFont)
                 }
             }
         }

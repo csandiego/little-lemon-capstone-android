@@ -14,8 +14,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,6 +27,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,7 +38,10 @@ import androidx.navigation.NavHostController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Onboarding(navController: NavHostController? = null, sharedPreferences: SharedPreferences? = null) {
+fun Onboarding(
+    navController: NavHostController? = null,
+    sharedPreferences: SharedPreferences? = null
+) {
     val context = LocalContext.current
     var firstName by rememberSaveable {
         mutableStateOf("")
@@ -47,6 +52,7 @@ fun Onboarding(navController: NavHostController? = null, sharedPreferences: Shar
     var email by rememberSaveable {
         mutableStateOf("")
     }
+    val karlaFont = FontFamily(Font(R.font.karla_regular))
     Column(Modifier.fillMaxSize()) {
         Box(modifier = Modifier.fillMaxWidth()) {
             Image(
@@ -65,6 +71,7 @@ fun Onboarding(navController: NavHostController? = null, sharedPreferences: Shar
             color = Color.White,
             textAlign = TextAlign.Center,
             fontSize = 24.sp,
+            fontFamily = karlaFont,
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color(0xFF495E57))
@@ -74,6 +81,7 @@ fun Onboarding(navController: NavHostController? = null, sharedPreferences: Shar
             text = "Personal information",
             fontSize = 16.sp,
             fontWeight = Bold,
+            fontFamily = karlaFont,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 12.dp, end = 12.dp, top = 32.dp, bottom = 12.dp)
@@ -85,31 +93,37 @@ fun Onboarding(navController: NavHostController? = null, sharedPreferences: Shar
                 .weight(1.0f)
         ) {
             Text(
-                text = "First name*", modifier = Modifier
+                text = "First name*",
+                fontFamily = karlaFont,
+                modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 24.dp)
             )
-            TextField(
+            OutlinedTextField(
                 value = firstName,
                 onValueChange = { firstName = it },
                 modifier = Modifier.fillMaxWidth()
             )
             Text(
-                text = "Last name*", modifier = Modifier
+                text = "Last name*",
+                fontFamily = karlaFont,
+                modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 24.dp)
             )
-            TextField(
+            OutlinedTextField(
                 value = lastName,
                 onValueChange = { lastName = it },
                 modifier = Modifier.fillMaxWidth()
             )
             Text(
-                text = "Email*", modifier = Modifier
+                text = "Email*",
+                fontFamily = karlaFont,
+                modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 24.dp)
             )
-            TextField(
+            OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
                 modifier = Modifier.fillMaxWidth()
@@ -147,7 +161,7 @@ fun Onboarding(navController: NavHostController? = null, sharedPreferences: Shar
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp, vertical = 24.dp)
         ) {
-            Text(text = "Register")
+            Text(text = "Register", fontFamily = karlaFont, fontWeight = Bold)
         }
     }
 }
